@@ -27,6 +27,14 @@
 	</style>
 </head>
 <body>
+	
+<?php
+	session_start();
+	if(!isset($_SESSION['username'])){
+    header('location:login.php');
+	}
+
+?>
      <a href="index.php">&#8592;</a>
      <?php 
           $sql = "SELECT * FROM images ORDER BY id DESC";
