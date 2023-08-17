@@ -27,7 +27,7 @@
 	</style>
 </head>
 <body>
-	
+
 <?php
 	session_start();
 	if(!isset($_SESSION['username'])){
@@ -35,6 +35,10 @@
 	}
 
 ?>
+
+	<h1 class="text-center text-warning mt-5">Welcome
+        <?php echo $_SESSION['username']; ?>
+    </h1>
      <a href="index.php">&#8592;</a>
      <?php 
           $sql = "SELECT * FROM images ORDER BY id DESC";

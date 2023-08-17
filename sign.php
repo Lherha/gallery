@@ -4,32 +4,58 @@ require 'db_conn.php';
 $success = false;
 $userExists = false;
 $passwordMismatch = false;
+$errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
     $cpassword = $_POST['cpassword'];
 
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    // Validate username
+    if (empty($username)) {
+        $errors[] = "Username is required.";
+    } else {
+        if (!preg_match("/^[a-zA-Z-' ]*$/", $username)) {
+            $errors[] = "Only letters and white space allowed for Username.";
+        }
+    }
 
-    $sql = "SELECT * FROM `registration` WHERE username = '$username'";
-    $result = mysqli_query($conn, $sql);
+    // Validate password strength
+    if (empty($password)) {
+        $errors[] = "Password is required.";
+    } else {
+        $uppercase = preg_match('@[A-Z]@', $password);
+        $lowercase = preg_match('@[a-z]@', $password);
+        $number = preg_match('@[0-9]@', $password);
+        $specialChars = preg_match('@[^\w]@', $password);
 
-    if ($result) {
-        $num = mysqli_num_rows($result);
-        if ($num > 0) {
-            $userExists = true;
-        } else {
-            if ($password === $cpassword) {
+        if (!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) {
+            $errors[] = "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.";
+        }
+    }
+
+    if ($password !== $cpassword) {
+        $passwordMismatch = true;
+    }
+
+    if (empty($errors) && !$passwordMismatch) {
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        $sql = "SELECT * FROM `registration` WHERE username = '$username'";
+        $result = mysqli_query($conn, $sql);
+
+        if ($result) {
+            $num = mysqli_num_rows($result);
+            if ($num > 0) {
+                $userExists = true;
+            } else {
                 $sql = "INSERT INTO `registration` (username, password) VALUES ('$username', '$hashedPassword')";
-                $result = mysqli_query($con, $sql);
+                $result = mysqli_query($conn, $sql);
                 if ($result) {
                     $success = true;
                     header('location: login.php');
                     exit;
                 }
-            } else {
-                $passwordMismatch = true;
             }
         }
     }
@@ -56,6 +82,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php if ($passwordMismatch): ?>
             <div class="alert alert-danger" role="alert">
                 <strong>Ohh no sorry</strong> Passwords didn't match.
+            </div>
+        <?php endif; ?>
+
+        <?php if (!empty($errors)): ?>
+            <div class="alert alert-danger" role="alert">
+                <?php foreach ($errors as $error): ?>
+                    <p><?php echo $error; ?></p>
+                <?php endforeach; ?>
             </div>
         <?php endif; ?>
 

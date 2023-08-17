@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (password_verify($password, $userRow['password'])) {
             session_start();
             $_SESSION['username'] = $username;
-            header('Location: display.php');
+            header('Location: view.php');
             exit;
         } else {
             $loginFailed = true;
