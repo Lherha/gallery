@@ -29,6 +29,11 @@ if (isset($_POST['logout'])) {
             font-size: 16px; 
             background-color: red;
         }
+		.upload{
+			text-align: left;
+            font-size: 16px; 
+            background-color: pink;
+		}
         .gallery {
             display: flex;
             justify-content: center;
