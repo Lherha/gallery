@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $result = mysqli_query($con, $sql);
                 if ($result) {
                     $success = true;
-                    header('location: display.php');
+                    header('location: login.php');
                     exit;
                 }
             } else {
