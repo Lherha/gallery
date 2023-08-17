@@ -66,5 +66,7 @@
 			       value="Upload">
 		</form>
 	</div>
+	Go back to <a href="view.php">Homepage</a>
+        </p>
 </body>
 </html>

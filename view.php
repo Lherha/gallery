@@ -8,7 +8,7 @@ if (!isset($_SESSION['username'])) {
 
 if (isset($_POST['logout'])) {
     session_destroy();
-    header('location: view.php');
+    header('location: logout.php');
     exit;
 }
 ?>
@@ -26,6 +26,8 @@ if (isset($_POST['logout'])) {
         }
         .logout-btn {
             text-align: right;
+            font-size: 16px; 
+            background-color: red;
         }
         .gallery {
             display: flex;
@@ -58,12 +60,20 @@ if (isset($_POST['logout'])) {
     <div class="header">
         <h1 class="welcome">Welcome <?php echo $_SESSION['username']; ?></h1>
         <div class="logout-btn">
-            <form action="logout.php" method="post">
-                <input type="submit" name="logout" value="Logout">
-            </form>
+            <?php
+            if (isset($_SESSION['username'])) {
+                echo '<form method="post" action="logout.php">
+                        <button type="submit" name="logout">Logout</button>
+                      </form>';
+            } else {
+                echo '<a href="login.php">Login</a>';
+            }
+            ?>
         </div>
     </div>
-    
+	
+    <button class="upload"><a href="index.php">&#8592;Upload</a></button>
+
     <?php
     if (isset($_SESSION['username'])) {
         echo '<div class="gallery">';

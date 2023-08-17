@@ -54,6 +54,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <button type="submit" class="btn btn-primary w-100">Login</button>
         </form>
+        <br> do not have an account?
+        <button onclick="window.location.href = 'sign.php';">Signup</button>                                        
+
+        </div>
+        <p style="padding-left: 10px; padding-top: 20px;">
+        Go back to <a href="view.php">Homepage</a>
+        </p>
+    </div>
     </div>
 </body>
 </html>
