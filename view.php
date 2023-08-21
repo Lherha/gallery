@@ -59,8 +59,7 @@ if (isset($_POST['logout'])) {
         .login{
             background-color: green;
             color: white;
-            font-size: 16px; 
-            width: 70px;
+            font-size: 16px;
         }
     </style>
 </head>
