@@ -20,7 +20,7 @@ if (isset($_POST['logout'])) {
             align-items: center;
             padding-left: 10px;
             padding-right: 10px;
-            padding-top: 5px;
+            padding-top: 0;
             padding-bottom: 0;
         }
         .logout {
@@ -62,10 +62,13 @@ if (isset($_POST['logout'])) {
             text-decoration: none;
             color: black;
         }
-        .welcome {
+        .welcome a {
             text-align: center;
             color: green;
             margin-top: 20px;
+        }
+        .welcome a:hover {
+            color: black;
         }
         .login{
             background-color: green;
@@ -93,7 +96,6 @@ if (isset($_POST['logout'])) {
             <input type="text" name="query" placeholder="Search by details">
             <button type="submit">Search</button>
             </form>
-    </div>
 	
     <?php if (isset($_SESSION['username'])) : ?>
         <button class="upload"><a href="index.php">&#8592;Upload</a></button>

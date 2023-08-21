@@ -31,7 +31,7 @@ if (isset($_SESSION['username'])) {
             align-items: center;
             padding-left: 10px;
             padding-right: 10px;
-            padding-top: 5px;
+            padding-top: 0;
             padding-bottom: 0;
         }
         .logout {
@@ -73,10 +73,13 @@ if (isset($_SESSION['username'])) {
             text-decoration: none;
             color: black;
         }
-        .welcome {
+        .welcome a {
             text-align: center;
             color: green;
             margin-top: 20px;
+        }
+        .welcome a:hover {
+            color: black;
         }
         .login{
             background-color: green;
