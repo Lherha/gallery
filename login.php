@@ -33,6 +33,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <style>
+        button {
+            background-color: green;
+            color: white;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <h1 class="text-center">Login Page</h1>
@@ -58,8 +67,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <button onclick="window.location.href = 'sign.php';">Signup</button>                                        
 
         </div>
-        <p style="padding-left: 10px; padding-top: 20px;">
-        Go back to &#x2192;<a href="view2.php">Homepage</a>
+        <p style="padding-left: 10px; padding-top: 20px; text-decoration:none;">
+        Go back to &#x2192;<a href="view2.php" style="text-decoration: none; color: blue;">Homepage</a>
         </p>
     </div>
     </div>

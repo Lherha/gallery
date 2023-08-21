@@ -25,6 +25,9 @@ if (isset($_POST['logout'])) {
             font-size: 16px; 
             background-color: red;
             color: white;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
         }
 		.upload{
 			text-align: left;
