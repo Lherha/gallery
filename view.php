@@ -20,10 +20,11 @@ if (isset($_POST['logout'])) {
             align-items: center;
             padding: 10px;
         }
-        .logout-btn {
+        .logout {
             text-align: right;
             font-size: 16px; 
             background-color: red;
+            color: white;
         }
 		.upload{
 			text-align: left;
@@ -55,13 +56,11 @@ if (isset($_POST['logout'])) {
             color: green;
             margin-top: 20px;
         }
-        .logout{
-            background-color: red;
-            color: white;
-        }
         .login{
             background-color: green;
             color: white;
+            font-size: 16px; 
+            width: 70px;
         }
     </style>
 </head>
