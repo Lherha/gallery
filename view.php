@@ -55,25 +55,35 @@ if (isset($_POST['logout'])) {
             color: green;
             margin-top: 20px;
         }
+        .logout{
+            background-color: red;
+            color: white;
+        }
+        .login{
+            background-color: green;
+            color: white;
+        }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1 class="welcome">Welcome <?php echo $_SESSION['username']; ?></h1>
+    <?php if (isset($_SESSION['username'])) : ?>
+            <h1 class="welcome">Welcome <?php echo $_SESSION['username']; ?></h1>
+        <?php endif; ?>
         <div class="logout-btn">
-            <?php
-            if (isset($_SESSION['username'])) {
-                echo '<form method="post" action="logout.php">
-                        <button type="submit" name="logout">Logout</button>
-                      </form>';
-            } else {
-                echo '<a href="login.php">Login</a>';
-            }
-            ?>
+            <?php if (isset($_SESSION['username'])) : ?>
+                <form method="post" action="logout.php">
+                    <button class="logout" type="submit" name="logout">Logout</button>
+                </form>
+            <?php else : ?>
+                <a class="login" href="login.php">Login</a>
+            <?php endif; ?>
         </div>
     </div>
 	
-    <button class="upload"><a href="index.php">&#8592;Upload</a></button>
+    <?php if (isset($_SESSION['username'])) : ?>
+        <button class="upload"><a href="index.php">&#8592;Upload</a></button>
+    <?php endif; ?>
 
     <?php
     if (isset($_SESSION['username'])) {
@@ -97,6 +107,3 @@ if (isset($_POST['logout'])) {
     ?>
 </body>
 </html>
-
-
-
