@@ -18,7 +18,9 @@ if (isset($_POST['logout'])) {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px;
+            padding-left: 10px;
+            padding-top: 10px;
+            padding-right: 10px;
         }
         .logout {
             text-align: right;
@@ -97,11 +99,13 @@ if (isset($_POST['logout'])) {
             while ($images = mysqli_fetch_assoc($res)) {
                 echo '<div class="alb">
                         <img src="uploads/' . $images['image_url'] . '" alt="Image">
+                        <p>Description: ' . $images['description'] . '</p>
+                        <p>Details: ' . $images['details'] . '</p>
                       </div>';
             }
         } else {
             echo "No images found.";
-        }
+        }        
         
         echo '</div>';
     }

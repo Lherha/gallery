@@ -27,11 +27,18 @@
 
 		form {
 			display: flex;
-			align-items: center;
+			flex-direction: column;
+			align-items: flex-start; 
 		}
 
-		input[type="file"] {
+		input[type="file"],
+		textarea,
+		input[type="text"] {
 			margin-bottom: 10px;
+			padding: 8px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			width: 100%;
 		}
 
 		input[type="submit"] {
@@ -52,21 +59,20 @@
 	<div class="container">
 		<?php if (isset($_GET['error'])): ?>
 			<p class="error-message"><?php echo $_GET['error']; ?></p>
-		<?php endif ?>
+		<?php endif; ?>
 
-		<form action="upload.php"
-		      method="post"
-		      enctype="multipart/form-data">
+		<form action="upload.php" method="post" enctype="multipart/form-data">
+			<input type="file" name="my_image">
+			
+			<label for="image_description">Image Description:</label>
+			<textarea id="image_description" name="image_description" rows="4" placeholder="Enter a description for the image"></textarea>
 
-			<input type="file" 
-			       name="my_image">
+			<label for="image_details">Additional Details:</label>
+			<input type="text" id="image_details" name="image_details" placeholder="Enter additional details">
 
-			<input type="submit" 
-			       name="submit"
-			       value="Upload">
+			<input type="submit" name="submit" value="Upload">
 		</form>
 	</div>
-	Go back to &#x2192; <a href="view.php">Homepage</a>
-        </p>
+	<p>Go back to &#x2192; <a href="view.php">Homepage</a></p>
 </body>
 </html>
