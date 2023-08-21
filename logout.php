@@ -7,7 +7,12 @@ session_destroy();
 <html>
 <head>
     <title>Logout</title>
-    <meta http-equiv="refresh" content="3;url=view.php">
+    <meta http-equiv="refresh" content="3;url=view2.php">
+    <style>
+        p {
+            color: red;
+        }
+    </style>
 </head>
 <body>
     <div>

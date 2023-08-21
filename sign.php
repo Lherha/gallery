@@ -119,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         </div>
         <p style="padding-left: 10px; padding-top: 20px;">
-        Go back to <a href="view.php">Homepage</a>
+        Go back to <a href="view2.php">Homepage</a>
         </p>
 </body>
 </html>
