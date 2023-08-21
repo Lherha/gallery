@@ -1,3 +1,8 @@
+<?php
+include 'db_conn.php';
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,8 +32,14 @@
 </head>
 <body>
 
-<button class="login"><a href="login.php">Login</a></button>
-
+<?php
+if (isset($_SESSION['username'])) {
+    echo '<button class="login"><a href="logout.php">Logout</a></button>';
+    echo '<meta http-equiv="refresh" content="3;url=view.php">';
+} else {
+    echo '<button class="login"><a href="login.php">Login</a></button>';
+}
+?>
 <br><br><br>
 
 <div class="content">
