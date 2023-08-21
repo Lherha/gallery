@@ -7,6 +7,17 @@ if (isset($_POST['logout'])) {
     header('location: ' . $_SERVER['PHP_SELF']);
     exit;
 }
+
+$searchQuery = isset($_GET['query']) ? $_GET['query'] : '';
+
+if (isset($_SESSION['username'])) {
+    $sql = "SELECT * FROM images WHERE details LIKE ? ORDER BY id DESC";
+    $stmt = mysqli_prepare($conn, $sql);
+    $searchPattern = "%" . $searchQuery . "%";
+    mysqli_stmt_bind_param($stmt, "s", $searchPattern);
+    mysqli_stmt_execute($stmt);
+    $res = mysqli_stmt_get_result($stmt);
+}
 ?>
 
 <!DOCTYPE html>
@@ -87,39 +98,26 @@ if (isset($_POST['logout'])) {
         <?php else : ?>
             <a class="login" href="login.php">Login</a>
         <?php endif; ?>
-        </div>
     </div>
-            <form class="search-form" method="get" action="search.php">
-            <input type="text" name="query" placeholder="Search by details">
-            <button type="submit">Search</button>
-            </form>
-    </div>
-	
-    <?php if (isset($_SESSION['username'])) : ?>
-        <button class="upload"><a href="index.php">&#8592;Upload</a></button>
+</div>
+<div class="search-form">
+    <form method="get" action="search.php">
+        <input type="text" name="query" placeholder="Search by details" value="<?php echo htmlentities($searchQuery); ?>">
+        <button type="submit">Search</button>
+    </form>
+</div>
+<div class="gallery">
+    <?php if (isset($_SESSION['username']) && mysqli_num_rows($res) > 0) : ?>
+        <?php while ($images = mysqli_fetch_assoc($res)) : ?>
+            <div class="alb">
+                <img src="uploads/<?php echo $images['image_url']; ?>" alt="Image">
+                <p>Description: <?php echo htmlentities($images['description']); ?></p>
+                <p>Details: <?php echo htmlentities($images['details']); ?></p>
+            </div>
+        <?php endwhile; ?>
+    <?php else : ?>
+        <p>No images found.</p>
     <?php endif; ?>
-
-    <?php
-    if (isset($_SESSION['username'])) {
-        echo '<div class="gallery">';
-        
-        $sql = "SELECT * FROM images ORDER BY id DESC";
-        $res = mysqli_query($conn, $sql);
-
-        if (mysqli_num_rows($res) > 0) {
-            while ($images = mysqli_fetch_assoc($res)) {
-                echo '<div class="alb">
-                        <img src="uploads/' . $images['image_url'] . '" alt="Image">
-                        <p>Description: ' . $images['description'] . '</p>
-                        <p>Details: ' . $images['details'] . '</p>
-                      </div>';
-            }
-        } else {
-            echo "No images found.";
-        }        
-        
-        echo '</div>';
-    }
-    ?>
+</div>
 </body>
 </html>
