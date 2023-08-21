@@ -8,7 +8,7 @@ if (!isset($_SESSION['username'])) {
 
 if (isset($_POST['logout'])) {
     session_destroy();
-    header('location: logout.php');
+    header('location: ' . $_SERVER['PHP_SELF']);
     exit;
 }
 ?>
