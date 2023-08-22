@@ -37,6 +37,10 @@ if (isset($_POST['logout'])) {
             flex-direction: column;
             align-items: center;
         }
+        .search-form button{
+            background-color: blue;
+            color: white;
+        }
 		.upload{
 			text-align: left;
             font-size: 16px; 
