@@ -40,6 +40,7 @@ if (isset($_POST['logout'])) {
         .search-form button{
             background-color: blue;
             color: white;
+            margin-top: 5px;
         }
 		.upload{
 			text-align: left;
