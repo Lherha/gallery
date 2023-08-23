@@ -49,7 +49,7 @@ if (isset($_SESSION['username'])) {
             align-items: center;
         }
         .search-form button{
-            background-color: blue;
+            background-color: #2596be;
             color: white;
         }
 		.upload{
