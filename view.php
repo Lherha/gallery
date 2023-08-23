@@ -47,6 +47,7 @@ if (isset($_POST['logout'])) {
             font-size: 16px; 
             background-color: #e28743;
 		}
+        
         .gallery {
             display: flex;
             justify-content: center;
