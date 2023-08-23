@@ -38,7 +38,7 @@ if (isset($_POST['logout'])) {
             align-items: center;
         }
         .search-form button{
-            background-color: blue;
+            background-color: #2596be;
             color: white;
             margin-top: 5px;
         }
